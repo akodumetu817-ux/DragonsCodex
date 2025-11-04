@@ -41,6 +41,7 @@ struct Token: Identifiable, Equatable {
 }
 
 // В AddTokenView
+@available(iOS 16.0, *)
 struct AddTokenView: View {
     @Environment(\.dismiss) var dismiss
     // Меняем замыкание: добавляем TokenType
@@ -134,6 +135,7 @@ import SwiftUI
 import PhotosUI
 
 // MARK: - Main Campaign Map View
+@available(iOS 16.0, *)
 struct CampaignMapView: View {
     // MARK: - State Variables
     @State private var selectedMapImage: Image?
@@ -549,13 +551,7 @@ struct SimpleGridView: Shape {
     }
 }
 
-// MARK: - Previews
-struct CampaignMapView_Previews: PreviewProvider {
-    static var previews: some View {
-        CampaignMapView()
-            .preferredColorScheme(.dark)
-    }
-}
+
 
 struct SectionTitleModifier: ViewModifier {
     func body(content: Content) -> some View {

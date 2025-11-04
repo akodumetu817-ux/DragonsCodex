@@ -10,6 +10,7 @@ import Foundation
 import SwiftUI
 import PhotosUI // Для нового PHPickerViewController
 
+@available(iOS 16.0, *)
 struct AddCharacterView: View {
     @StateObject private var viewModel = AddCharacterViewModel()
     @Environment(\.dismiss) var dismiss // Для закрытия View
@@ -279,10 +280,3 @@ struct CameraPicker: UIViewControllerRepresentable {
     }
 }
 
-// MARK: - Preview
-struct AddCharacterView_Previews: PreviewProvider {
-    static var previews: some View {
-        AddCharacterView()
-            .preferredColorScheme(.dark) // Для соответствия стилю приложения
-    }
-}

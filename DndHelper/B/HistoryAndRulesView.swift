@@ -200,7 +200,11 @@ struct HistoryAndRulesView: View {
         }
         .foregroundColor(textColor)
         .sheet(isPresented: $isShown) {
-            AddCharacterView()
+            if #available(iOS 16.0, *) {
+                AddCharacterView()
+            } else {
+                // Fallback on earlier versions
+            }
         }
     }
 }

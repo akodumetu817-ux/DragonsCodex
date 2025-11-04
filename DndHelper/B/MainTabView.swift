@@ -35,29 +35,33 @@ struct MainTabView: View {
     }
 
     var body: some View {
-        NavigationStack {
-            VStack(spacing: 0) {
-                ZStack {
-                    switch selectedTab {
-                    case .characters:
-                        HomeView()
-                    case .map:
-                        CampaignMapView()
-                    case .vault:
-                        MastersVaultView()
-                    case .cubes:
-                        DiceRollerView()
-                    case .artifacts:
-                        HistoryAndRulesView()
+        if #available(iOS 16.0, *) {
+            NavigationStack {
+                VStack(spacing: 0) {
+                    ZStack {
+                        switch selectedTab {
+                        case .characters:
+                            HomeView()
+                        case .map:
+                            CampaignMapView()
+                        case .vault:
+                            MastersVaultView()
+                        case .cubes:
+                            DiceRollerView()
+                        case .artifacts:
+                            HistoryAndRulesView()
+                        }
                     }
+                    
+                    CustomTabBar(selectedTab: $selectedTab)
                 }
-                
-                CustomTabBar(selectedTab: $selectedTab)
+                .edgesIgnoringSafeArea(.bottom)
             }
-            .edgesIgnoringSafeArea(.bottom)
+            .tint(.accentCol)
+            .onAppear(perform: UIApplication.shared.addTapGestureRecognizer)
+        } else {
+            // Fallback on earlier versions
         }
-        .tint(.accentCol)
-        .onAppear(perform: UIApplication.shared.addTapGestureRecognizer)
     
 
     }

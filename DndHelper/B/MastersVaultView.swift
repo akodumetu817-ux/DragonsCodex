@@ -235,18 +235,22 @@ struct GeneratorView: View {
                         .font(Font.custom(viewModel.fontName, size: 14))
                         .foregroundColor(Color(white: 0.9))
 
-                    TextEditor(text: $viewModel.userInput)
-                        .font(Font.custom(viewModel.fontName, size: 14))
-                        .frame(height: 100)
-                        .scrollContentBackground(.hidden)
-                        .background(textFieldBackgroundColor)
-                        .foregroundColor(.white)
-                        .cornerRadius(5)
-                        .overlay(
-                            RoundedRectangle(cornerRadius: 5)
-                                .stroke(Color.gray.opacity(0.5), lineWidth: 1)
-                        )
-                        .autocorrectionDisabled()
+                    if #available(iOS 16.0, *) {
+                        TextEditor(text: $viewModel.userInput)
+                            .font(Font.custom(viewModel.fontName, size: 14))
+                            .frame(height: 100)
+                            .scrollContentBackground(.hidden)
+                            .background(textFieldBackgroundColor)
+                            .foregroundColor(.white)
+                            .cornerRadius(5)
+                            .overlay(
+                                RoundedRectangle(cornerRadius: 5)
+                                    .stroke(Color.gray.opacity(0.5), lineWidth: 1)
+                            )
+                            .autocorrectionDisabled()
+                    } else {
+                        // Fallback on earlier versions
+                    }
                        
                     
 

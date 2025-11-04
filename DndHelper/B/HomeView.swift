@@ -34,7 +34,11 @@ struct HomeView: View {
         .background(Color.appBackground.ignoresSafeArea())
         .navigationBarHidden(true)
         .sheet(isPresented: $showingAddCharacterView) {
-            AddCharacterView()
+            if #available(iOS 16.0, *) {
+                AddCharacterView()
+            } else {
+                // Fallback on earlier versions
+            }
         }
     }
 }

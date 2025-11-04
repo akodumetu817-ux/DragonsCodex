@@ -9,6 +9,7 @@ import SwiftUI
 
 import SwiftUI
 
+@available(iOS 16.0, *)
 struct AllMonstersView: View {
     @StateObject private var viewModel = AllMonstersViewModel()
     @Environment(\.dismiss) var dismiss
@@ -168,11 +169,3 @@ struct NoSearchResultsView: View {
     }
 }
 
-
-struct AllMonstersView_Previews: PreviewProvider {
-    static var previews: some View {
-        NavigationView {
-            AllMonstersView()
-        }
-    }
-}

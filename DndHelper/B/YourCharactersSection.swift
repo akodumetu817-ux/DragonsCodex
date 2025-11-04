@@ -43,10 +43,14 @@ struct YourCharactersSection: View {
                 ScrollView(.horizontal, showsIndicators: false) {
                     HStack(spacing: 16) {
                         ForEach(characters) { character in
-                            NavigationLink(destination: CharacterDetailView(characterId: character.id)) {
-                                CharacterHomeCardView(character: character)
+                            if #available(iOS 16.0, *) {
+                                NavigationLink(destination: CharacterDetailView(characterId: character.id)) {
+                                    CharacterHomeCardView(character: character)
+                                }
+                                .buttonStyle(PlainButtonStyle())
+                            } else {
+                                // Fallback on earlier versions
                             }
-                            .buttonStyle(PlainButtonStyle())
                         }
                     }
                 }

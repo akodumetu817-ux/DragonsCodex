@@ -9,6 +9,7 @@
 import SwiftUI
 import RealmSwift
 
+@available(iOS 16.0, *)
 struct CharacterDetailView: View {
     // ViewModel будет инициализирован с characterId
     @StateObject private var viewModel: CharacterDetailViewModel

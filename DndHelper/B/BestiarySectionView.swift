@@ -20,10 +20,14 @@ struct BestiarySectionView: View {
                     .font(.custom(AppFontName.aclonicaRegular, size: 20))
                     .foregroundColor(.primaryText)
                 Spacer()
-                NavigationLink(destination: AllMonstersView()) {
-                    Text("View All >")
-                        .font(.custom(AppFontName.aclonicaRegular, size: 14))
-                        .foregroundColor(Color.accentCol)
+                if #available(iOS 16.0, *) {
+                    NavigationLink(destination: AllMonstersView()) {
+                        Text("View All >")
+                            .font(.custom(AppFontName.aclonicaRegular, size: 14))
+                            .foregroundColor(Color.accentCol)
+                    }
+                } else {
+                    // Fallback on earlier versions
                 }
             }
 
@@ -39,10 +43,14 @@ struct BestiarySectionView: View {
             } else {
                 LazyVStack(spacing: 12) {
                     ForEach(monsters) { monster in
-                        NavigationLink(destination: MonsterDetailView(monster: monster)) {
-                             MonsterCardView(monster: monster)
+                        if #available(iOS 16.0, *) {
+                            NavigationLink(destination: MonsterDetailView(monster: monster)) {
+                                MonsterCardView(monster: monster)
+                            }
+                            .buttonStyle(PlainButtonStyle())
+                        } else {
+                            // Fallback on earlier versions
                         }
-                        .buttonStyle(PlainButtonStyle())
                     }
                 }
             }

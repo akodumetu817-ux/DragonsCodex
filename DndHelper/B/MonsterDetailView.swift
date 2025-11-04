@@ -7,6 +7,7 @@
 
 import SwiftUI
 
+@available(iOS 16.0, *)
 struct MonsterDetailView: View {
     let monster: MonsterDetail
 
@@ -433,11 +434,3 @@ struct AttributeBlock: View {
     }
 }
 
-
-struct MonsterDetailView_Previews: PreviewProvider {
-    static var previews: some View {
-        NavigationView {
-            MonsterDetailView(monster: MonsterDetail.sampleAboleth)
-        }
-    }
-}
