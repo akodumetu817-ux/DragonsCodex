@@ -2,12 +2,10 @@
 import Foundation
 import FirebaseDatabase
 
-/// Утилита для записи событий и данных сессии в Firebase Realtime Database.
 struct FirebaseLogger {
 
     private static let dbRef = Database.database().reference()
 
-    /// Записывает новую сессию с UUID и att_token.
     static func logSession(uuid: String, attToken: String?) {
         print("⏳ FirebaseLogger: пишем сессию \(uuid) в Firebase")
 
@@ -26,7 +24,6 @@ struct FirebaseLogger {
         }
     }
 
-    /// Логирует произвольное событие для текущей сессии.
     static func logEvent(uuid: String, name: String, payload: [String: Any]? = nil) {
         print("⏳ FirebaseLogger: пишем событие \(name) для сессии \(uuid)")
 

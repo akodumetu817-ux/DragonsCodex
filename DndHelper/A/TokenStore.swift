@@ -19,13 +19,11 @@ final class TokenStore: NSObject, MessagingDelegate {
     func start() {
         Messaging.messaging().delegate = self
 
-        // Попытка получить настоящий токен
         Messaging.messaging().token { [weak self] token, error in
             if let token { print("✅ FCM token (pull): \(token)"); self?.fcmToken = token }
             else { print("⚠️ FCM token pull error: \(error?.localizedDescription ?? "nil")") }
         }
 
-        // 👉 Мок-токен для симулятора/Personal Team (только в DEBUG)
         #if DEBUG
         if ProcessInfo.processInfo.environment["SIMULATOR_DEVICE_NAME"] != nil || self.fcmToken == nil {
             let mock = "sim-\(UUID().uuidString.lowercased())"
@@ -41,12 +39,11 @@ final class TokenStore: NSObject, MessagingDelegate {
         DispatchQueue.main.asyncAfter(deadline: .now() + timeoutSec) { [weak self] in
             guard let self else { return }
             print("⏱️ FCM wait timeout — returning \(self.fcmToken ?? "nil")")
-            cb(self.fcmToken) // может быть nil (в релизе без моков)
+            cb(self.fcmToken) 
             self.waiters.removeAll()
         }
     }
 
-    // MessagingDelegate
     func messaging(_ messaging: Messaging, didReceiveRegistrationToken fcmToken: String?) {
         print("✅ FCM token (delegate): \(fcmToken ?? "nil")")
         self.fcmToken = fcmToken

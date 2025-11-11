@@ -34,17 +34,16 @@ final class WebContainerViewController: UIViewController {
     private func setupWebView() {
         print("✅ WebContainerViewController: setupWebView()")
 
-        // --- Конфигурация WKWebView
         let config = WKWebViewConfiguration()
         config.allowsInlineMediaPlayback = true
         config.defaultWebpagePreferences.allowsContentJavaScript = true
-        config.applicationNameForUserAgent = "" // чистый UA без приписки
+        config.applicationNameForUserAgent = ""
 
         webView = WKWebView(frame: .zero, configuration: config)
         webView.translatesAutoresizingMaskIntoConstraints = false
         webView.navigationDelegate = self
         webView.uiDelegate = self
-        webView.customUserAgent = MyConstants.webUserAgent // Safari UA для Google Auth
+        webView.customUserAgent = MyConstants.webUserAgent
         webView.allowsBackForwardNavigationGestures = true
         webView.scrollView.contentInsetAdjustmentBehavior = .never
         webView.scrollView.verticalScrollIndicatorInsets = view.safeAreaInsets
@@ -88,7 +87,6 @@ extension WebContainerViewController: WKNavigationDelegate {
 }
 
 extension WebContainerViewController: WKUIDelegate {
-    /// Открытие дочерних окон/попапов — через отдельный VC
     func webView(_ webView: WKWebView,
                  createWebViewWith configuration: WKWebViewConfiguration,
                  for navigationAction: WKNavigationAction,
@@ -105,11 +103,9 @@ extension WebContainerViewController: WKUIDelegate {
                                     name: "popup_presented",
                                     payload: ["request": navigationAction.request.url?.absoluteString ?? ""])
         }
-        // Возвращаем nil, т.к. мы сами показали новый веб-контроллер
         return nil
     }
     
-    // MARK: - JS dialogs (alert / confirm / prompt)
     func webView(_ webView: WKWebView,
                  runJavaScriptAlertPanelWithMessage message: String,
                  initiatedByFrame frame: WKFrameInfo,

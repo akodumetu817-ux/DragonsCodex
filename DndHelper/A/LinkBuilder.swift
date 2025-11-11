@@ -39,7 +39,7 @@ struct LinkBuilder {
                         devModel: devModel,
                         bundle: bundle,
                         fcm_token: fcm ?? "",
-                        att_token: AdServicesTokenProvider.fetchBase64Token() ?? ""   // <-- допускаем пустую строку
+                        att_token: AdServicesTokenProvider.fetchBase64Token() ?? ""
                     )
                     completion(p)
                 }
@@ -60,7 +60,7 @@ struct LinkBuilder {
             let ptr = rawPtr.baseAddress!.assumingMemoryBound(to: CChar.self)
             return String(cString: ptr)
         }
-        return machine // e.g. "iPhone14,5"
+        return machine
     }
 }
 

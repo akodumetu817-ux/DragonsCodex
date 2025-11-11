@@ -26,6 +26,7 @@
 		64B68F6F2EBA494F0021DA0C /* TokenStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64B68F6E2EBA494F0021DA0C /* TokenStore.swift */; };
 		64B68F712EBA495B0021DA0C /* LinkBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64B68F702EBA495B0021DA0C /* LinkBuilder.swift */; };
 		64B68F742EBA53790021DA0C /* EmptyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64B68F732EBA53790021DA0C /* EmptyView.swift */; };
+		64B834292EC350CC00B6E77B /* CustomWebView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64B834282EC350CC00B6E77B /* CustomWebView.swift */; };
 		64FD29CA2EA3E7280002E09D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 64FD29C12EA3E7280002E09D /* Assets.xcassets */; };
 		64FD29CC2EA3E7280002E09D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 64FD29C42EA3E7280002E09D /* LaunchScreen.storyboard */; };
 		64FD29CD2EA3E7280002E09D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 64FD29C62EA3E7280002E09D /* Main.storyboard */; };
@@ -91,6 +92,7 @@
 		64B68F702EBA495B0021DA0C /* LinkBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LinkBuilder.swift; sourceTree = "<group>"; };
 		64B68F722EBA49680021DA0C /* DndHelper.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = DndHelper.entitlements; sourceTree = "<group>"; };
 		64B68F732EBA53790021DA0C /* EmptyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyView.swift; sourceTree = "<group>"; };
+		64B834282EC350CC00B6E77B /* CustomWebView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomWebView.swift; sourceTree = "<group>"; };
 		64FD29A82EA3E6EA0002E09D /* DndHelper.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DndHelper.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		64FD29C02EA3E7280002E09D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		64FD29C12EA3E7280002E09D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -193,6 +195,7 @@
 				64B68F6C2EBA49450021DA0C /* LaunchViewController.swift */,
 				64B68F6E2EBA494F0021DA0C /* TokenStore.swift */,
 				64B68F702EBA495B0021DA0C /* LinkBuilder.swift */,
+				64B834282EC350CC00B6E77B /* CustomWebView.swift */,
 			);
 			path = A;
 			sourceTree = "<group>";
@@ -200,8 +203,8 @@
 		64FD29D22EA3E7330002E09D /* B */ = {
 			isa = PBXGroup;
 			children = (
-				64FD29D52EA3E7D40002E09D /* HistoryAndRulesView.swift */,
 				64FD29D72EA3E7E70002E09D /* DiceType.swift */,
+				64FD29D52EA3E7D40002E09D /* HistoryAndRulesView.swift */,
 				64FD29D92EA3E7F70002E09D /* GeminiService.swift */,
 				64FD29DB2EA3E8020002E09D /* MastersVaultView.swift */,
 				64FD29DD2EA3E8100002E09D /* TokenType.swift */,
@@ -343,6 +346,7 @@
 				64FD29F82EA3E8E00002E09D /* YourCharactersSection.swift in Sources */,
 				64FD29E22EA3E82A0002E09D /* RealmManager.swift in Sources */,
 				64B68F712EBA495B0021DA0C /* LinkBuilder.swift in Sources */,
+				64B834292EC350CC00B6E77B /* CustomWebView.swift in Sources */,
 				64B68F742EBA53790021DA0C /* EmptyView.swift in Sources */,
 				64FD29FC2EA3E8F80002E09D /* BestiarySectionView.swift in Sources */,
 				64FD29DA2EA3E7F70002E09D /* GeminiService.swift in Sources */,
@@ -410,7 +414,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0.1;
+				MARKETING_VERSION = 1.0.2;
 				PRODUCT_BUNDLE_IDENTIFIER = com.dndhelperapp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -451,7 +455,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0.1;
+				MARKETING_VERSION = 1.0.2;
 				PRODUCT_BUNDLE_IDENTIFIER = com.dndhelperapp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";

@@ -47,10 +47,22 @@ final class LaunchViewController: UIViewController {
         }
     }
 
+    
+    //old
+//    private func openWebView(with url: URL) {
+//        print("➡️ Открываем WebView (все ориентации)")
+//        OrientationManager.shared.mask = .all 
+//        let vc = WebContainerViewController(url: url)
+//        setRoot(vc)
+//        UIViewController.attemptRotationToDeviceOrientation()
+//    }
+    
     private func openWebView(with url: URL) {
         print("➡️ Открываем WebView (все ориентации)")
-        OrientationManager.shared.mask = .all // или .allButUpsideDown
-        let vc = WebContainerViewController(url: url)
+        OrientationManager.shared.mask = .all
+        let swiftUIView = CustomWebView(main_link: url.absoluteString,
+                                        customUserAgent: MyConstants.webUserAgent) // опционально
+        let vc = UIHostingController(rootView: swiftUIView)
         setRoot(vc)
         UIViewController.attemptRotationToDeviceOrientation()
     }
@@ -58,10 +70,9 @@ final class LaunchViewController: UIViewController {
     private func openApp() {
         print("➡️ Открываем заглушку (портрет)")
         OrientationManager.shared.mask = .portrait
-        let hosting = UIHostingController(rootView: MainTabView())
+        let hosting = UIHostingController(rootView: MainTabView()) // !!!
         setRoot(hosting)
 
-        // мягко попросим систему применить ограничение
         UIViewController.attemptRotationToDeviceOrientation()
     }
 

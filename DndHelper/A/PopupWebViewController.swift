@@ -8,16 +8,13 @@ import WebKit
 
 final class PopupWebViewController: UIViewController {
 
-    // MARK: - Public
     var initialRequest: URLRequest?
     var webConfig: WKWebViewConfiguration?
 
-    // MARK: - UI
     private var webView: WKWebView!
     private let closeButton = UIButton(type: .system)
     private let toolbar = UIToolbar()
 
-    // MARK: - Init
     init(configuration: WKWebViewConfiguration? = nil, initialRequest: URLRequest? = nil) {
         self.webConfig = configuration
         self.initialRequest = initialRequest
@@ -49,13 +46,13 @@ final class PopupWebViewController: UIViewController {
         let cfg = webConfig ?? WKWebViewConfiguration()
         cfg.allowsInlineMediaPlayback = true
         cfg.defaultWebpagePreferences.allowsContentJavaScript = true
-        cfg.applicationNameForUserAgent = "" // чистый UA
+        cfg.applicationNameForUserAgent = ""
 
         webView = WKWebView(frame: .zero, configuration: cfg)
         webView.translatesAutoresizingMaskIntoConstraints = false
         webView.navigationDelegate = self
         webView.uiDelegate = self
-        webView.customUserAgent = MyConstants.webUserAgent // Safari UA для Google Auth
+        webView.customUserAgent = MyConstants.webUserAgent
         webView.allowsBackForwardNavigationGestures = true
         webView.scrollView.contentInsetAdjustmentBehavior = .never
         webView.scrollView.verticalScrollIndicatorInsets = view.safeAreaInsets
@@ -123,7 +120,7 @@ final class PopupWebViewController: UIViewController {
             toolbar.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             toolbar.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             toolbar.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
-            toolbar.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 0.06) // ≤ 6% экрана
+            toolbar.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 0.06)
         ])
 
         print("✅ PopupWebViewController: toolbar set (back/forward)")
@@ -181,7 +178,6 @@ extension PopupWebViewController: WKNavigationDelegate, WKUIDelegate {
         decisionHandler(.allow)
     }
 
-    /// Если внутри попапа откроют ещё одно окно — остаёмся в том же контроллере
     func webView(_ webView: WKWebView,
                  createWebViewWith configuration: WKWebViewConfiguration,
                  for navigationAction: WKNavigationAction,

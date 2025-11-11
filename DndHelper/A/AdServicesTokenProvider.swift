@@ -5,7 +5,6 @@ import AdServices
 
 struct AdServicesTokenProvider {
 
-    /// Возвращает base64-строку токена или nil, если токен недоступен.
     static func fetchBase64Token() -> String? {
         print("⏳ AdServicesTokenProvider: начинаем получение att_token")
 

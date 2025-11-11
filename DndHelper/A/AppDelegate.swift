@@ -15,7 +15,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         print("🚀 AppDelegate start")
         FirebaseApp.configure()
-        
       
         
          UNUserNotificationCenter.current().delegate = self
@@ -38,8 +37,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         print("✅ Firebase configured")
         
         
-        AppsFlyerLib.shared().appsFlyerDevKey = "P8Cmc5f5JjkNjQ3haoGbWS"
-        AppsFlyerLib.shared().appleAppID     = "6754596120"
+        AppsFlyerLib.shared().appsFlyerDevKey = "P8Cmc5f5JjkNjQ3haoGbWS" // !!!
+        AppsFlyerLib.shared().appleAppID     = "6754596120" // !!!
         AppsFlyerLib.shared().delegate       = self
        // AppsFlyerLib.shared().isDebug        = true // пока тестируешь
         
@@ -47,17 +46,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         AppsFlyerLib.shared().start()
         
-        // Генерация UUID + AdServices token
         let uuid = DeviceIDProvider.persistedLowerUUID()
         let att = AdServicesTokenProvider.fetchBase64Token()
         
-        // Лог сессии в Realtime DB
         FirebaseLogger.logSession(uuid: uuid, attToken: att)
         
-        // Передадим контекст в StartGateService (чтобы логировать дальнейшие события)
         StartGateService.shared.configureSession(uuid: uuid, attToken: att)
         
-        // Окно и стартовый VC
         window = UIWindow(frame: UIScreen.main.bounds)
         window?.rootViewController = LaunchViewController()
         window?.makeKeyAndVisible()
@@ -69,13 +64,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     private func requestATTAndStartSDKs() {
         guard #available(iOS 14.5, *) else {
-            // На iOS < 14.5 ATT нет — просто стартуем SDK
             startSDKsWithCurrentPrivacyState()
             return
         }
 
         ATTrackingManager.requestTrackingAuthorization { status in
-            // status: .authorized / .denied / .notDetermined / .restricted
             DispatchQueue.main.async {
                 self.startSDKsWithCurrentPrivacyState()
             }
@@ -93,9 +86,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             }
         }
 
-        // Теперь можно стартовать SDK
         AppsFlyerLib.shared().start()
-        // остальной ваш старт (Firebase Analytics можно оставить — он не требует ATT для базовой аналитики)
     }
     
     private func requestTrackingAuthorization() {
@@ -115,7 +106,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                     }
                 }
             } else {
-                // На iOS ниже 14 ATT не требуется
                 print("123 ATT недоступен, можно сразу использовать IDFA")
             }
         }
@@ -145,7 +135,6 @@ final class OrientationManager {
 extension AppDelegate: MessagingDelegate, UNUserNotificationCenterDelegate {
     func messaging(_ messaging: Messaging, didReceiveRegistrationToken fcmToken: String?) {
         print("✅ FCM token: \(fcmToken ?? "nil")")
-        // отправь на свой backend если нужно
     }
 }
 
